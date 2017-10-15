@@ -5,13 +5,12 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-
         <header className="Login-header">
-          <h3 className="Login-title">Login</h3>
+          <h1 className="Login-title">Login</h1>
         </header>
 
         <form>
-          <p>test</p>
+          <p>Please login</p>
         </form>
 
 

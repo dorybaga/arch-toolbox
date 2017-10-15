@@ -6,18 +6,18 @@ import {
   Link
 } from 'react-router-dom';
 import './index.css';
-import Home from './Containers/Home/Home.js';
+import Dashboard from './Containers/Dashboard/Dashboard.js';
 import Login from './Containers/Login/Login.js';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
   <Router>
     <div>
-      <Link to='/'> Home </ Link>
-      <Link to='/login'> Login </ Link>
+      <Link to='/'> Login </ Link>
+      <Link to='/dashboard'> Dashboard </ Link>
 
-      <Route exact path='/' component={Home} />
-      <Route path='/login' component={Login} />
+      <Route exact path='/' component={Login} />
+      <Route path='/dashboard' component={Dashboard} />
     </div>
   </ Router>
 ), document.getElementById('root'));
