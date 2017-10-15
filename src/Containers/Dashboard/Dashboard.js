@@ -3,6 +3,11 @@ import Login from '../Login/Login.js';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+
+  }
+
   render() {
     return (
       <div className="Dashboard">

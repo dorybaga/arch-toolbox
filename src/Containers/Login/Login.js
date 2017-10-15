@@ -10,6 +10,12 @@ class Login extends Component {
 
   }
 
+  verifyUser(){
+    // check if username exists
+    // check if password is correct
+
+  }
+
   userLogin(){
     this.props.verfiyUser(this.state.userInput);
   }
@@ -20,6 +26,8 @@ class Login extends Component {
       userInput: e.target.value
     });
   }
+
+
 
   render() {
     return (
@@ -45,8 +53,6 @@ class Login extends Component {
            <br />
            <button onClick={this.userLogin.bind(this)}>Log In</button>
         </form>
-
-
       </div>
     );
   }
