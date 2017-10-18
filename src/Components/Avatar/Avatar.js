@@ -5,7 +5,7 @@ import defaultPic from './default-user.png';
 const Avatar = () => {
   return (
     <div>
-      <img src={ defaultPic } alt="profile pic" height="42" width="42" />
+      <img src={ defaultPic } alt="profile pic" height="25" width="25" />
     </div>
   )
 }

@@ -36,23 +36,24 @@ class Login extends Component {
           <h1 className="Login-title">Login</h1>
         </header>
 
-
-        <form>
-          <p>Please login</p>
-          <input
-            type="text"
-            placeholder="username"
-            onChange={this.handleUserLogin.bind(this)}
-           />
-           <br/>
-           <input
-            type="text"
-            placeholder="password"
-            onChange={this.handleUserLogin.bind(this)}
-           />
-           <br />
-           <button onClick={this.userLogin.bind(this)}>Log In</button>
-        </form>
+        <div id="loginForm">
+          <form>
+            <p>Please login</p>
+            <input
+              type="text"
+              placeholder="username"
+              onChange={this.handleUserLogin.bind(this)}
+             />
+             <br/>
+             <input
+              type="text"
+              placeholder="password"
+              onChange={this.handleUserLogin.bind(this)}
+             />
+             <br />
+             <button onClick={this.userLogin.bind(this)}>Log In</button>
+          </form>
+        </div>
       </div>
     );
   }

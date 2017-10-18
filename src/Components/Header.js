@@ -4,9 +4,11 @@ import Avatar from './Avatar/Avatar.js';
 
 const Header = () => {
   return (
-    <div>
-      <h3>Foundation</h3>
-      <Avatar />
+    <div className="header">
+      <h3 className="appName"> Foundation </h3>
+      <div className="userPic">
+        <Avatar />
+      </div>
     </div>
   )
 }
