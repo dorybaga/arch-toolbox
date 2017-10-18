@@ -28,3 +28,11 @@ h1 {
 #loginForm {
   padding-left: 2rem;
 }
+
+.projectBox {
+  border-bottom: 1px solid black;
+}
+
+.projectInfo {
+  text-decoration: none;
+}
