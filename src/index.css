@@ -3,3 +3,36 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.appName {
+  display: inline-flex;
+
+}
+
+.userPic {
+  display: inline-flex;
+  padding-right: 2rem;
+}
+
+h1 {
+  padding-left: 2rem;
+}
+
+#loginForm {
+  padding-left: 2rem;
+}
+
+.projectBox {
+  border-bottom: 1px solid black;
+}
+
+.projectInfo {
+  text-decoration: none;
+}
