@@ -7,9 +7,6 @@ import Header from '../../components/Header.js';
 
 
 class Schematic extends Component {
-  constructor() {
-    super();
-}
 
   componentWillMount() {
       // upload schematic from aws

@@ -5,14 +5,11 @@ import { connect } from 'react-redux';
 import './Dashboard.css';
 import Header from '../../components/Header.js';
 import { loadProjects } from '../../actions/projects.js';
-import ProjectList from './ProjectList.js';
+import ProjectList from '../ProjectList/ProjectList.js';
 // import { getProjectsFromFakeXHR } from '../../lib/projects.db.js';
 
 
 class MobileDash extends Component {
-  constructor() {
-    super();
-}
 
   componentWillMount() {
     this.props.loadProjects();

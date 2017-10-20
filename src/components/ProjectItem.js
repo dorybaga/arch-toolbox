@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-const Project = ({ title, client_name, job_number, address }) => {
+const ProjectItem = ({ title, client_name, job_number, address }) => {
   return (
     <div className='projectBox'>
-      <a href='/schematic' className='projectInfo'>
+      <a href='/schematic' className='projectItem'>
         <h3>{ title }</h3>
         <p>Location: { address }</p>
         <p>Client: { client_name }</p>
@@ -15,4 +15,4 @@ const Project = ({ title, client_name, job_number, address }) => {
   )
 }
 
-export default Project;
+export default ProjectItem;

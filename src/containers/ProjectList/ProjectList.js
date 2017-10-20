@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Project from '../../components/Project.js';
+import ProjectItem from '../../components/ProjectItem.js';
 
 class ProjectList extends Component {
   render(){
@@ -9,7 +9,7 @@ class ProjectList extends Component {
           this.props.data
             .map( data => {
               return (
-                <Project
+                <ProjectItem
                   title={data.project.title}
                   client_name={data.project.client_name}
                   job_number={data.project.job_number}
