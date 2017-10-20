@@ -6,14 +6,14 @@ class ProjectList extends Component {
     return (
       <ul>
         {
-          this.props.projects
-            .map( project => {
+          this.props.data
+            .map( data => {
               return (
                 <Project
-                  title={project.title}
-                  client_name={project.client_name}
-                  job_number={project.job_number}
-                  address={project.address}
+                  title={data.project.title}
+                  client_name={data.project.client_name}
+                  job_number={data.project.job_number}
+                  address={data.project.address}
                 />
               )
             })

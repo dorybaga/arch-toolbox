@@ -2,14 +2,12 @@ import {
   LOAD_PROJECTS
 } from '../actions/projects.js';
 
-const initialState = { projects: [] };
+const initialState = [];
 
 const projects = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_PROJECTS:
-      return {
-        projects: [...action.projects]
-      }
+      return action.projects;
       break;
 
     default:

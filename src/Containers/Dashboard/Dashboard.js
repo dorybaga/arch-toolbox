@@ -6,7 +6,7 @@ import './Dashboard.css';
 import Header from '../../components/Header.js';
 import { loadProjects } from '../../actions/projects.js';
 import ProjectList from './ProjectList.js';
-import { getProjectsFromFakeXHR } from '../../lib/projects.db.js';
+// import { getProjectsFromFakeXHR } from '../../lib/projects.db.js';
 
 
 class MobileDash extends Component {
@@ -15,15 +15,8 @@ class MobileDash extends Component {
 }
 
   componentWillMount() {
-      getProjectsFromFakeXHR()
-      .then(projectList => {
-        this.props.loadProjects(projectList);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }
-
+    this.props.loadProjects();
+  }
 
   render() {
     return (
@@ -31,7 +24,7 @@ class MobileDash extends Component {
         <Header />
         <h1>Dashboard</h1>
         <ProjectList
-          projects={this.props.projects}
+          data={this.props.data}
         />
       </div>
     );
@@ -40,14 +33,14 @@ class MobileDash extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    projects: state.projects
+    data: state
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadProjects: (projects) => {
-      dispatch(loadProjects(projects));
+    loadProjects: () => {
+      dispatch(loadProjects());
     }
   }
 }

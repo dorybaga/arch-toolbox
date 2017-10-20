@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-// import ReduxThunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -16,7 +16,10 @@ import Schematic from './containers/Schematic/Schematic.js';
 
 import registerServiceWorker from './registerServiceWorker';
 
-let store = createStore(projects);
+let store = createStore(
+  projects,
+  applyMiddleware(ReduxThunk)
+);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -25,7 +28,6 @@ ReactDOM.render(
         <Link to='/'> Login </ Link>
         <Link to='/dashboard'> Dashboard </ Link>
         <Link to='/schematic'> Schematic </ Link>
-
 
         <Route exact path='/' component={Login} />
         <Route path='/dashboard' component={Dashboard} />

@@ -1,4 +1,5 @@
 /*jshint esversion: 6 */
+
 import React from 'react';
 import defaultPic from './default-user.png';
 
