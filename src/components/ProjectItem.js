@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const ProjectItem = ({
   title,
@@ -14,13 +16,13 @@ const ProjectItem = ({
 
   return (
     <div className="projectBox">
-      <a href={projectRoute} className="projectItem">
-        <h1>{projectId} </h1>
+      <Link to={projectRoute} className="projectItem">
+        <h1>{projectId}</h1>
         <h3>{title}</h3>
-        <p>Location: {address}</p>
-        <p>Client: {client_name}</p>
+        <p>Location:{address}</p>
+        <p>Client:{client_name}</p>
         <p>Job #{job_number}</p>
-      </a>
+      </Link>
     </div>
   );
 };

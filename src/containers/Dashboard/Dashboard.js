@@ -10,9 +10,6 @@ import ProjectList from './ProjectList.js';
 
 
 class MobileDash extends Component {
-  constructor() {
-    super();
-}
 
   componentWillMount() {
     this.props.loadProjects();

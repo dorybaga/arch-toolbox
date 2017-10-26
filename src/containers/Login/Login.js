@@ -1,5 +1,8 @@
+/*jshint esversion: 6 */
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import axios from 'axios';
 import './Login.css';
 import { loadUsers } from '../../actions/users.js';
 
@@ -7,22 +10,30 @@ class Login extends Component {
   constructor() {
     super();
     this.state ={
-      username: '',
+      email: '',
       password: ''
     };
   }
 
   userLogin(e){
-    e.preventDefault();
-    loadUsers();
-    console.log('username:', this.state.username);
-    console.log('password:', this.state.password);
+  e.preventDefault();
+  let userObj = {
+    email: this.state.email,
+    password: this.state.password
+  };
+
+  axios.post('/api/login', userObj)
+    .then( (res) => {
+      console.log(res);
+    });
+  console.log('email:', this.state.email);
+  console.log('password:', this.state.password);
 
   }
 
   handleUsername(e){
     this.setState({
-      username: e.target.value
+      email: e.target.value
     });
   }
 
@@ -42,7 +53,7 @@ class Login extends Component {
           <p>Please login</p>
           <input
             type="text"
-            placeholder="username"
+            placeholder="email"
             onChange={this.handleUsername.bind(this)}
            />
            <br/>

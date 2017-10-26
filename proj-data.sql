@@ -1,5 +1,3 @@
-\c foundation_database
-
 INSERT INTO "Projects" VALUES
 (default,
 'Reno to Part-time Room',
