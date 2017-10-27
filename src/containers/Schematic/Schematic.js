@@ -28,10 +28,6 @@ class Schematic extends Component {
       <div>
         <Header />
         <h1>Schematic</h1>
-        <Footer
-          title={this.props.data.project.title}
-        />
-
       </div>
     );
   }
