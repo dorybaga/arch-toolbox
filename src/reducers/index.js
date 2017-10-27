@@ -1,21 +1,10 @@
-import {
-  LOAD_PROJECTS,
-  LOAD_PROJECT
-} from '../actions/projects.js';
+import { combineReducers } from "redux";
+import project from "./oneProject.js";
+import projects from "./allProjects.js";
 
-const initialState = [];
+const reducers = combineReducers({
+  project,
+  projects
+});
 
-const projects = (state = initialState, action) => {
-  switch (action.type) {
-    case LOAD_PROJECTS:
-      return action.projects;
-      break;
-    case LOAD_PROJECT:
-      return action.project;
-      break;
-    default:
-      return state;
-  }
-};
-
-export default projects;
+export default reducers;

@@ -3,7 +3,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const ProjectItem = ({
   title,
   client_name,
@@ -12,7 +11,7 @@ const ProjectItem = ({
   projectId
 }) => {
   const projectRoute = "/project/" + projectId;
-  console.log(projectRoute);
+  // console.log(projectRoute);
 
   return (
     <div className="projectBox">

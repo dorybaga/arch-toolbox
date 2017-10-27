@@ -1,4 +1,3 @@
-
 export const getProjectsFromDB = () => {
   return new Promise((resolve, reject) => {
     var oReq = new XMLHttpRequest();
@@ -12,11 +11,12 @@ export const getProjectsFromDB = () => {
   });
 };
 
-export const getProjectById = (projectId) => {
+export const getProjectById = projectId => {
   return new Promise((resolve, reject) => {
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function() {
       var parseData = JSON.parse(this.responseText);
+      console.log("DATA from DB", parseData);
       resolve(parseData);
     });
 

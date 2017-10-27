@@ -5,14 +5,15 @@ import ReduxThunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./index.css";
-import projects from "./reducers";
+import reducers from "./reducers";
 import Dashboard from "./containers/Dashboard/Dashboard.js";
 import Login from "./containers/Login/Login.js";
 import Schematic from "./containers/Schematic/Schematic.js";
 
 import registerServiceWorker from "./registerServiceWorker";
 
-let store = createStore(projects, applyMiddleware(ReduxThunk));
+let store = createStore(reducers, applyMiddleware(ReduxThunk));
+console.log("STORE******", store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
