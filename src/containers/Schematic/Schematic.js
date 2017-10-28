@@ -10,17 +10,21 @@ class Schematic extends Component {
   constructor(props) {
     super(props);
     this.projectId = props.match.params.id;
-  }
-
-  componentWillMount() {
-    getProjectById(this.projectId);
-    console.log("projectId is:", this.projectId);
-    console.log("this.props", this.props.data);
-    // upload schematic from aws
+    this.state = {
+      project: []
+    };
   }
 
   componentDidMount() {
-    console.log("didmount", this.props.data);
+    getProjectById(this.projectId)
+      // console.log("projectId is:", this.projectId);
+      .then(projectData => {
+        console.log(projectData);
+        this.setState({
+          project: projectData
+        });
+      });
+    // upload schematic from aws
   }
 
   render() {
@@ -28,7 +32,7 @@ class Schematic extends Component {
       <div>
         <Header />
         <h1>Schematic</h1>
-        <Footer />
+        <Footer project={this.state.project} />
       </div>
     );
   }
