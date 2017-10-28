@@ -1,43 +1,40 @@
 /*jshint esversion: 6 */
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { connect } from 'react-redux';
-import axios from 'axios';
-import './Login.css';
-import { loadUsers } from '../../actions/users.js';
+import axios from "axios";
+import "./Login.css";
 
 class Login extends Component {
   constructor() {
     super();
-    this.state ={
-      email: '',
-      password: ''
+    this.state = {
+      email: "",
+      password: ""
     };
   }
 
-  userLogin(e){
-  e.preventDefault();
-  let userObj = {
-    email: this.state.email,
-    password: this.state.password
-  };
+  userLogin(e) {
+    e.preventDefault();
+    let userObj = {
+      email: this.state.email,
+      password: this.state.password
+    };
 
-  axios.post('/api/login', userObj)
-    .then( (res) => {
+    axios.post("/api/login", userObj).then(res => {
       console.log(res);
     });
-  console.log('email:', this.state.email);
-  console.log('password:', this.state.password);
-
+    console.log("email:", this.state.email);
+    console.log("password:", this.state.password);
   }
 
-  handleUsername(e){
+  handleUsername(e) {
     this.setState({
       email: e.target.value
     });
   }
 
-  handlePassword(e){
+  handlePassword(e) {
     this.setState({
       password: e.target.value
     });
@@ -55,15 +52,15 @@ class Login extends Component {
             type="text"
             placeholder="email"
             onChange={this.handleUsername.bind(this)}
-           />
-           <br/>
-           <input
+          />
+          <br />
+          <input
             type="password"
             placeholder="password"
             onChange={this.handlePassword.bind(this)}
-           />
-           <br />
-           <button onClick={this.userLogin.bind(this)}>Log In</button>
+          />
+          <br />
+          <button onClick={this.userLogin.bind(this)}>Log In</button>
         </form>
       </div>
     );

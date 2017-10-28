@@ -1,46 +1,39 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import "./Dashboard.css";
 import Header from "../../components/Header.js";
-import { loadProjects } from "../../actions/projects.js";
-import ProjectList from "../ProjectList/ProjectList.js";
+import { getProjectsFromDB } from "../../lib/projects-api.js";
+import ProjectList from "../../components/ProjectList.js";
 // import { getProjectsFromFakeXHR } from '../../lib/projects.db.js';
 
 class MobileDash extends Component {
-  componentWillMount() {
-    this.props.loadProjects();
+  constructor() {
+    super();
+    this.state = {
+      projects: []
+    };
+  }
+  componentDidMount() {
+    getProjectsFromDB().then(projectList => {
+      console.log(projectList);
+      this.setState({
+        projects: projectList
+      });
+    });
+    console.log(this.state.projects);
   }
 
   render() {
+    console.log(this.state.projects);
     return (
       <div>
         <Header />
         <h1>Dashboard</h1>
-        <ProjectList data={this.props.data} />
+        <ProjectList projects={this.state.projects} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log("state in dashboard", state);
-  return {
-    data: state.projects
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadProjects: () => {
-      dispatch(loadProjects());
-    }
-  };
-};
-
-const ConnectedMobileDash = connect(mapStateToProps, mapDispatchToProps)(
-  MobileDash
-);
-
-export default ConnectedMobileDash;
+export default MobileDash;

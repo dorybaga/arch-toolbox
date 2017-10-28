@@ -3,6 +3,7 @@ export const getProjectsFromDB = () => {
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function() {
       var parseData = JSON.parse(this.responseText);
+      console.log("ALL PROJECTS FROM DB", parseData);
       resolve(parseData);
     });
 
