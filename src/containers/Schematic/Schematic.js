@@ -16,8 +16,12 @@ class Schematic extends Component {
   componentWillMount() {
     this.props.loadProjectById(this.projectId);
     console.log("projectId is:", this.projectId);
-    console.log(this.props.data.project);
+    console.log("this.props", this.props.data);
     // upload schematic from aws
+  }
+
+  componentDidMount() {
+    console.log("didmount", this.props.data);
   }
 
   render() {
@@ -25,6 +29,7 @@ class Schematic extends Component {
       <div>
         <Header />
         <h1>Schematic</h1>
+        <Footer />
       </div>
     );
   }
