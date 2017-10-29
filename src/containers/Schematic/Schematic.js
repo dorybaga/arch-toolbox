@@ -38,6 +38,7 @@ class Schematic extends Component {
     return (
       <div>
         <img src={this.state.schematic ? this.state.schematic.image_url : 'Image did not load'} />
+        <Footer project={this.state.project ? this.state.project : 'Props did not load'} />
       </div>
 
     )

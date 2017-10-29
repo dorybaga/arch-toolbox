@@ -6,17 +6,8 @@ const Footer = ({ project }) => {
   console.log(project);
   return (
     <div className="projectFooter">
-      {project.map(({ project }) => {
-        console.log(project.title);
-        return (
-          <div className="projectDetails">
-            <h5>{project.title}</h5>
-            <p>Location:{project.address}</p>
-            <p>Client:{project.client_name}</p>
-            <p>Job #{project.job_number}</p>
-          </div>
-        );
-      })}
+      <h1>{project.id}</h1>
+      <h1>{project.title}</h1>
     </div>
   );
 };
