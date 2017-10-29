@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
-import Pin from '../../containers/Pin/Pin.js';
+import Pin from "../../containers/Pin/Pin.js";
 import "./SchematicDwg.css";
 
 class SchematicDwg extends Component {
@@ -13,35 +13,36 @@ class SchematicDwg extends Component {
   }
 
   logPostition() {
-    if (this.state.activate === true){
+    if (this.state.activate === true) {
       console.log("x and y =", this.props.position);
       this.setState({
         pinList: [...this.state.pinList, this.props.position]
       });
     } else {
-      console.log('hit the button');
+      console.log("hit the button");
     }
   }
 
-  activatePins(){
+  activatePins() {
     this.setState({
       activate: true
     });
-    console.log('can I drop a pin:', this.state.activate);
+    console.log("can I drop a pin:", this.state.activate);
   }
 
   render() {
+    const pinLayer = {
+      position: "relative",
+      width: "100%",
+      height: "100%"
+    };
+
     return (
-      <div>
-        <div className="schematicCanvas">
-         <div className="pinLayer">
-            {
-              this.state.pinList.map(pin => {
-                return (
-                  <Pin x={pin.x} y={pin.y}/>
-                )
-              })
-            }
+      <div className="schematicCanvas">
+        <div className="pinLayer" style={pinLayer}>
+          {this.state.pinList.map(pin => {
+            return <Pin x={pin.x} y={pin.y} />;
+          })}
         </div>
         <div className="imageLayer">
           <img
@@ -54,8 +55,6 @@ class SchematicDwg extends Component {
           <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
         </div>
       </div>
-      </div>
-
     );
   }
 }

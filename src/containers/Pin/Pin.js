@@ -7,18 +7,23 @@ class Pin extends Component {
     console.log("these are the props", this.props);
   }
 
-  pinStyles(){
-    return {
-      position: 'absolute',
-      top: `${this.props.y}px`,
-      left: `${this.props.x}px`,
-      width: '5px',
-    };
-  }
+  // pinStyles() {
+  //   return {
+  //     position: "absolute",
+  //     top: `${this.props.y}px`,
+  //     left: `${this.props.x}px`
+  //     // width: "5px"
+  //   };
+  // }
 
   render() {
+    const pinStyles = {
+      position: "absolute",
+      top: `${this.props.y}px`,
+      left: `${this.props.x}px`
+    };
     return (
-      <div styles="{this.pinStyles()}">
+      <div style={pinStyles}>
         <p>PIN</p>
       </div>
     );
