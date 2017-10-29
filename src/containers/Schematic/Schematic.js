@@ -11,30 +11,36 @@ class Schematic extends Component {
     super(props);
     this.projectId = props.match.params.id;
     this.state = {
-      project: []
+      project: null,
+      schematic: null,
+      pin: null
     };
   }
 
   componentDidMount() {
     getProjectById(this.projectId)
-      // console.log("projectId is:", this.projectId);
       .then(projectData => {
-        console.log(projectData);
+        // console.log("entire returned response", projectData);
+        // console.log("first and only obj on the array", projectData[0]);
+        // console.log("keys in that obj", Object.keys(projectData[0]));
+        // backend needs to return and object, not an array in an object
         this.setState({
-          project: projectData
+          project: projectData[0].project,
+          schematic: projectData[0].schematic,
+          pin: projectData[0].pin
         });
       });
-    // upload schematic from aws
   }
 
   render() {
+    console.log("this is the state", this.state);
+    console.log("schemactic", this.state.schematic ? this.state.schematic.image_url : "this is a string");
     return (
       <div>
-        <Header />
-        <h1>Schematic</h1>
-        <Footer project={this.state.project} />
+        <img src={this.state.schematic ? this.state.schematic.image_url : 'Image did not load'} />
       </div>
-    );
+
+    )
   }
 }
 
