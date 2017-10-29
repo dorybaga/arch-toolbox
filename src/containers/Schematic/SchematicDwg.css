@@ -1,0 +1,11 @@
+.schematicCanvas{
+  background-color: red;
+  width: 1000px;
+  height: 1000px;
+}
+
+.pinLayer {
+  position: relative;
+  width: 100;
+  height: 100;
+}
