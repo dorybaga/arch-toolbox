@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-
 import React, { Component } from "react";
 import ReactCursorPosition from "react-cursor-position";
 import Header from "../../components/Header.js";

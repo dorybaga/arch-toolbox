@@ -1,11 +1,9 @@
 /*jshint esversion: 6 */
-
 import React, { Component } from "react";
 import "./Dashboard.css";
 import Header from "../../components/Header.js";
 import { getProjectsFromDB } from "../../lib/projects-api.js";
 import ProjectList from "../../components/ProjectList.js";
-// import { getProjectsFromFakeXHR } from '../../lib/projects.db.js';
 
 class MobileDash extends Component {
   constructor() {
