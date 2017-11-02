@@ -38,20 +38,19 @@ class SchematicDwg extends Component {
 
   logPostition() {
     if (this.state.activate === true) {
+      let username = localStorage.getItem('loggedInUserName');
+      let userId = localStorage.getItem('loggedInUserId');
+      let schematicId = localStorage.getItem('schematicId');
+      console.log("schematicId", schematicId);
+      console.log("username =", username);
+      console.log("userId", userId);
       console.log("x and y =", this.props.position);
-      //this is where we send the POST
       console.log("x", this.props.position.x);
       console.log("y", this.props.position.y);
       let newPin = {
         x: this.props.position.x,
         y: this.props.position.y,
-        isActive:true,
-        width: 1,
-        height: 1,
-        isPositionOutside: true,
-        isMouseDetected: true,
-        isTouchDetected: true,
-        user_id: 1,
+        user_id: userId,
         schematic_id: 3
       };
 
