@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 export const getProjectsFromDB = () => {
   return new Promise((resolve, reject) => {
     var oReq = new XMLHttpRequest();
@@ -25,3 +26,5 @@ export const getProjectById = projectId => {
     oReq.send();
   });
 };
+
+

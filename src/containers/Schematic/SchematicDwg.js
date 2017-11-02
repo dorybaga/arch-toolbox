@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import Pin from "../../containers/Pin/Pin.js";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
+import axios from "axios";
 import "./SchematicDwg.css";
 import Modal from 'react-modal';
 
@@ -38,6 +39,30 @@ class SchematicDwg extends Component {
   logPostition() {
     if (this.state.activate === true) {
       console.log("x and y =", this.props.position);
+      //this is where we send the POST
+      console.log("x", this.props.position.x);
+      console.log("y", this.props.position.y);
+      let newPin = {
+        x: this.props.position.x,
+        y: this.props.position.y,
+        isActive:true,
+        width: 1,
+        height: 1,
+        isPositionOutside: true,
+        isMouseDetected: true,
+        isTouchDetected: true,
+        user_id: 1,
+        schematic_id: 3
+      };
+
+      axios.post('/api/pins', newPin)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
       this.setState({
         pinList: [...this.state.pinList, this.props.position],
         activate: false
@@ -60,7 +85,6 @@ class SchematicDwg extends Component {
       width: "100%",
       height: "100%"
     };
-
     return (
       <div className="schematicCanvas">
         <div className="pinLayer" style={pinLayer}>
