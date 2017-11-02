@@ -20,7 +20,15 @@ class Login extends Component {
     };
 
     axios.post("/api/login", userObj).then(res => {
-      console.log(res);
+      localStorage.removeItem('loggedInUserName');
+      localStorage.setItem('loggedInUserName', res.data.firstName);
+      localStorage.removeItem('loggedInUserId');
+      localStorage.setItem('loggedInUserId',res.data.id);
+      let username = localStorage.getItem('loggedInUserName');
+      let userId = localStorage.getItem('loggedInUserId');
+      console.log("username =", username);
+      console.log("userId", userId);
+      window.location.href = '/dashboard';
     });
     console.log("email:", this.state.email);
     console.log("password:", this.state.password);

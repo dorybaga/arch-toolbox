@@ -14,3 +14,9 @@ const Header = () => {
 }
 
 export default Header;
+
+
+// logout code:
+// localStorage.removeItem('loggedInUserName');
+// localStorage.setItem('loggedInUserName', '');
+// window.location.href = '/login';
