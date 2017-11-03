@@ -14,7 +14,6 @@ class MobileDash extends Component {
   }
   componentDidMount() {
     getProjectsFromDB().then(projectList => {
-      console.log(projectList);
       this.setState({
         projects: projectList
       });

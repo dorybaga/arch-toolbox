@@ -4,16 +4,16 @@ import Pin from "../../containers/Pin/Pin.js";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import axios from "axios";
 import "./SchematicDwg.css";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 const customStyles = {
-  content : {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
   }
 };
 
@@ -27,21 +27,21 @@ class SchematicDwg extends Component {
     };
   }
 
-  openModal(){
-    console.log('I am working');
-    this.setState({modalIsOpen: true});
+  openModal() {
+    console.log("I am working");
+    this.setState({ modalIsOpen: true });
   }
 
-  closeModal(){
-    this.setState({modalIsOpen: false});
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   logPostition() {
     if (this.state.activate === true) {
-      let username = localStorage.getItem('loggedInUserName');
-      let userId = localStorage.getItem('loggedInUserId');
-      let schematicId = localStorage.getItem('schematicId');
-      let projectId = localStorage.getItem('projectId');
+      let username = localStorage.getItem("loggedInUserName");
+      let userId = localStorage.getItem("loggedInUserId");
+      let schematicId = localStorage.getItem("schematicId");
+      let projectId = localStorage.getItem("projectId");
       console.log("projectId", projectId);
       console.log("schematicId", schematicId);
       console.log("username =", username);
@@ -57,13 +57,14 @@ class SchematicDwg extends Component {
         schematic_id: schematicId
       };
 
-      axios.post('/api/pins', newPin)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .post("/api/pins", newPin)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
 
       this.setState({
         pinList: [...this.state.pinList, this.props.position],
@@ -93,23 +94,24 @@ class SchematicDwg extends Component {
           {this.state.pinList.map(pin => {
             return (
               <div>
-              <div>
-                <a onClick={this.openModal.bind(this)}><Pin x={pin.x} y={pin.y} /></a>
-              </div>
-
-              <Modal
-                isOpen={this.state.modalIsOpen}
-                onRequestClose={this.closeModal.bind(this)}
-                style={customStyles}
-                >
-                <button onClick={this.closeModal.bind(this)}>close</button>
                 <div>
-                  <ModalContent />
+                  <a onClick={this.openModal.bind(this)}>
+                    <Pin x={pin.x} y={pin.y} />
+                  </a>
                 </div>
-              </Modal>
 
+                <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onRequestClose={this.closeModal.bind(this)}
+                  style={customStyles}
+                >
+                  <button onClick={this.closeModal.bind(this)}>close</button>
+                  <div>
+                    <ModalContent />
+                  </div>
+                </Modal>
               </div>
-            )
+            );
           })}
         </div>
         <div className="imageLayer">
