@@ -34,7 +34,7 @@ class Schematic extends Component {
       this.state.schematic ? this.state.schematic.image_url : "this is a string"
     );
     return (
-      <div>
+      <div className="schematicContainer">
         <ReactCursorPosition>
           <SchematicDwg
             image={
