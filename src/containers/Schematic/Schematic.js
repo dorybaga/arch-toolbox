@@ -19,12 +19,22 @@ class Schematic extends Component {
 
   componentDidMount() {
     getProjectById(this.projectId).then(projectData => {
-      console.log("this is the schematic id", projectData[0].schematic.id);
-      console.log("this is the project id", projectData[0].project.id);
-      localStorage.setItem('projectId', projectData[0].project.id);
-      localStorage.setItem('schematicId', projectData[0].schematic.id);
-      let schematicId = localStorage.getItem('schematicId');
-      console.log("this is the schematic id", schematicId);
+      console.log("project data", projectData[0]);
+      console.log("project data", projectData[0].pin);
+
+      // console.log("this is the project id", projectData[0].project.id);
+      // axios.get(`/api/projects/${projectId}/pin/:pin_id`)
+      //   .then(function(res) {
+      //     console.log(res);
+      //   })
+      //   .catch(function (err) {
+      //     console.log(err);
+      //   })
+
+      localStorage.setItem("projectId", projectData[0].project.id);
+      localStorage.setItem("schematicId", projectData[0].schematic.id);
+      let schematicId = localStorage.getItem("schematicId");
+      // console.log("this is the schematic id", schematicId);
       this.setState({
         project: projectData[0].project,
         schematic: projectData[0].schematic,
@@ -34,11 +44,6 @@ class Schematic extends Component {
   }
 
   render() {
-    console.log("this is the state", this.state);
-    console.log(
-      "schemactic",
-      this.state.schematic ? this.state.schematic.image_url : "this is a string"
-    );
     return (
       <div>
         <ReactCursorPosition>
@@ -48,8 +53,6 @@ class Schematic extends Component {
                 ? this.state.schematic.image_url
                 : "Image did not load"
             }
-
-
           />
         </ReactCursorPosition>
         <Footer

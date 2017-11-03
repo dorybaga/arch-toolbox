@@ -2,7 +2,6 @@
 import React from "react";
 
 const Footer = ({ project }) => {
-  console.log(project);
   return (
     <div className="projectFooter">
       <h3>{project.title}</h3>

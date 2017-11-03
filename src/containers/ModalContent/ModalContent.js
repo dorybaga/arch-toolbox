@@ -12,14 +12,6 @@ class ModalContent extends Component {
     return (
       <div>
         <Camera />
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
-        <h1>data and data and data</h1>
       </div>
     );
   }
