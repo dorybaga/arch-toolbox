@@ -27,6 +27,13 @@ class SchematicDwg extends Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      pinList: this.props.pinList
+    });
+    console.log(this.props.pinList);
+  }
+
   openModal() {
     console.log("I am working");
     this.setState({ modalIsOpen: true });
@@ -42,13 +49,13 @@ class SchematicDwg extends Component {
       let userId = localStorage.getItem("loggedInUserId");
       let schematicId = localStorage.getItem("schematicId");
       let projectId = localStorage.getItem("projectId");
-      console.log("projectId", projectId);
-      console.log("schematicId", schematicId);
-      console.log("username =", username);
-      console.log("userId", userId);
-      console.log("x and y =", this.props.position);
-      console.log("x", this.props.position.x);
-      console.log("y", this.props.position.y);
+      // console.log("projectId", projectId);
+      // console.log("schematicId", schematicId);
+      // console.log("username =", username);
+      // console.log("userId", userId);
+      // console.log("x and y =", this.props.position);
+      // console.log("x", this.props.position.x);
+      // console.log("y", this.props.position.y);
       let newPin = {
         x: this.props.position.x,
         y: this.props.position.y,

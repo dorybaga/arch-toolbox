@@ -13,7 +13,7 @@ class Schematic extends Component {
     this.state = {
       project: null,
       schematic: null,
-      pin: null
+      pins: []
     };
   }
 
@@ -38,30 +38,36 @@ class Schematic extends Component {
       this.setState({
         project: projectData[0].project,
         schematic: projectData[0].schematic,
-        pin: projectData[0].pin
+        pins: projectData[0].pin
       });
     });
   }
 
   render() {
-    return (
-      <div>
-        <ReactCursorPosition>
-          <SchematicDwg
-            image={
-              this.state.schematic
-                ? this.state.schematic.image_url
-                : "Image did not load"
+    console.log(this.state.pins);
+    if (this.state.pins.length > 0) {
+      return (
+        <div>
+          <ReactCursorPosition>
+            <SchematicDwg
+              image={
+                this.state.schematic
+                  ? this.state.schematic.image_url
+                  : "Image did not load"
+              }
+              pinList={this.state.pins}
+            />
+          </ReactCursorPosition>
+          <Footer
+            project={
+              this.state.project ? this.state.project : "Props did not load"
             }
           />
-        </ReactCursorPosition>
-        <Footer
-          project={
-            this.state.project ? this.state.project : "Props did not load"
-          }
-        />
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return <div>stupid pins</div>;
+    }
   }
 }
 
