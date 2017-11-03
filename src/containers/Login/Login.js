@@ -1,7 +1,19 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
 import axios from "axios";
-import "./Login.css";
+import Header from "../Header/Header.js";
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import "../../index.css";
+
+const style = {
+  backgroundColor: 'white',
+  height: '75%',
+  width: '75%',
+  textAlign: 'center',
+  display: 'center',
+};
 
 class Login extends Component {
   constructor() {
@@ -48,26 +60,34 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <header className="Login-header">
-          <h1 className="Login-title">Login</h1>
-        </header>
-        <form>
-          <p>Please login</p>
-          <input
-            type="text"
-            placeholder="email"
-            onChange={this.handleUsername.bind(this)}
-          />
-          <br />
-          <input
-            type="password"
-            placeholder="password"
-            onChange={this.handlePassword.bind(this)}
-          />
-          <br />
-          <button onClick={this.userLogin.bind(this)}>Log In</button>
-        </form>
+      <div className="login">
+        <Header />
+        <div style={style}>
+          <Paper zDepth={5}>
+            <form>
+              <br />
+              <br />
+              <TextField
+                type="text"
+                placeholder="email"
+                onChange={this.handleUsername.bind(this)}
+              />
+              <br />
+              <TextField
+                type="password"
+                placeholder="password"
+                onChange={this.handlePassword.bind(this)}
+              />
+              <br />
+              <br />
+              <RaisedButton label="Log In" onClick={this.userLogin.bind(this)} />
+              <br />
+              <br />
+            </form>
+          </Paper>
+        </div>
+
+
       </div>
     );
   }

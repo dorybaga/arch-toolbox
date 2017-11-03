@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Pin from "../../containers/Pin/Pin.js";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import axios from "axios";
-import "./SchematicDwg.css";
 import Modal from "react-modal";
 
 const customStyles = {

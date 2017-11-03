@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
 import ReactCursorPosition from "react-cursor-position";
-import Header from "../../components/Header.js";
+import Header from "../Header/Header.js";
 import Footer from "../../components/Footer.js";
 import SchematicDwg from "./SchematicDwg";
 import { getProjectById } from "../../lib/projects-api";
@@ -21,20 +21,9 @@ class Schematic extends Component {
     getProjectById(this.projectId).then(projectData => {
       console.log("project data", projectData[0]);
       console.log("project data", projectData[0].pin);
-
-      // console.log("this is the project id", projectData[0].project.id);
-      // axios.get(`/api/projects/${projectId}/pin/:pin_id`)
-      //   .then(function(res) {
-      //     console.log(res);
-      //   })
-      //   .catch(function (err) {
-      //     console.log(err);
-      //   })
-
       localStorage.setItem("projectId", projectData[0].project.id);
       localStorage.setItem("schematicId", projectData[0].schematic.id);
       let schematicId = localStorage.getItem("schematicId");
-      // console.log("this is the schematic id", schematicId);
       this.setState({
         project: projectData[0].project,
         schematic: projectData[0].schematic,
