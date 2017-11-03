@@ -51,7 +51,7 @@ class SchematicDwg extends Component {
         x: this.props.position.x,
         y: this.props.position.y,
         user_id: userId,
-        schematic_id: 3
+        schematic_id: schematicId
       };
 
       axios.post('/api/pins', newPin)

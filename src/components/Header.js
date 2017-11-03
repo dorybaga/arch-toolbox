@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <div className="header">
       <h3 className="appName"> Foundation </h3>
+      <button>Logout</button>
       <div className="userPic">
         <Avatar />
       </div>
