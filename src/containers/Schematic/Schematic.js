@@ -20,6 +20,8 @@ class Schematic extends Component {
   componentDidMount() {
     getProjectById(this.projectId).then(projectData => {
       console.log("this is the schematic id", projectData[0].schematic.id);
+      console.log("this is the project id", projectData[0].project.id);
+      localStorage.setItem('projectId', projectData[0].project.id);
       localStorage.setItem('schematicId', projectData[0].schematic.id);
       let schematicId = localStorage.getItem('schematicId');
       console.log("this is the schematic id", schematicId);
@@ -46,6 +48,7 @@ class Schematic extends Component {
                 ? this.state.schematic.image_url
                 : "Image did not load"
             }
+
 
           />
         </ReactCursorPosition>

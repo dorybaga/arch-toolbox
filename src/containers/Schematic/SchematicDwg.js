@@ -41,6 +41,8 @@ class SchematicDwg extends Component {
       let username = localStorage.getItem('loggedInUserName');
       let userId = localStorage.getItem('loggedInUserId');
       let schematicId = localStorage.getItem('schematicId');
+      let projectId = localStorage.getItem('projectId');
+      console.log("projectId", projectId);
       console.log("schematicId", schematicId);
       console.log("username =", username);
       console.log("userId", userId);
@@ -51,7 +53,8 @@ class SchematicDwg extends Component {
         x: this.props.position.x,
         y: this.props.position.y,
         user_id: userId,
-        schematic_id: 3
+        project_id: projectId,
+        schematic_id: schematicId
       };
 
       axios.post('/api/pins', newPin)
