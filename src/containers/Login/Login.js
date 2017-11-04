@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../Header/Header.js";
+import NoAvatarHeader from "../Header/NoAvatarHeader.js";
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -61,7 +61,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <NoAvatarHeader />
         <div className="login">
           <div style={style}>
             <Paper zDepth={5}>
