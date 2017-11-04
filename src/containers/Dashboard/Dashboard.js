@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
-import "./Dashboard.css";
-import Header from "../../components/Header.js";
+import Header from "../Header/Header.js";
 import { getProjectsFromDB } from "../../lib/projects-api.js";
 import ProjectList from "../../components/ProjectList.js";
 
@@ -26,7 +25,6 @@ class MobileDash extends Component {
     return (
       <div>
         <Header />
-        <h1>Dashboard</h1>
         <ProjectList projects={this.state.projects} />
       </div>
     );
