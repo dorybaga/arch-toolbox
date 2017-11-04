@@ -56,7 +56,26 @@ class Schematic extends Component {
         </div>
       );
     } else {
-      return <div>stupid pins</div>;
+      return (
+        <div>
+          <Header />
+          <ReactCursorPosition>
+            <SchematicDwg
+              image={
+                this.state.schematic
+                  ? this.state.schematic.image_url
+                  : "Image did not load"
+              }
+              pinList={this.state.pins}
+            />
+          </ReactCursorPosition>
+          <Footer
+            project={
+              this.state.project ? this.state.project : "Props did not load"
+            }
+          />
+        </div>
+      );
     }
   }
 }
