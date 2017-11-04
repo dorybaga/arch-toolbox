@@ -35,6 +35,7 @@ class Schematic extends Component {
   render() {
     return (
       <div>
+      <Header />
         <ReactCursorPosition>
           <SchematicDwg
             image={

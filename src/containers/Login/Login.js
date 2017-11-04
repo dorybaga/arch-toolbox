@@ -9,8 +9,8 @@ import "../../index.css";
 
 const style = {
   backgroundColor: 'white',
-  height: '75%',
-  width: '75%',
+  height: '100%',
+  width: '100%',
   textAlign: 'center',
   display: 'center',
 };
@@ -60,34 +60,34 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div>
         <Header />
-        <div style={style}>
-          <Paper zDepth={5}>
-            <form>
-              <br />
-              <br />
-              <TextField
-                type="text"
-                placeholder="email"
-                onChange={this.handleUsername.bind(this)}
-              />
-              <br />
-              <TextField
-                type="password"
-                placeholder="password"
-                onChange={this.handlePassword.bind(this)}
-              />
-              <br />
-              <br />
-              <RaisedButton label="Log In" onClick={this.userLogin.bind(this)} />
-              <br />
-              <br />
-            </form>
-          </Paper>
+        <div className="login">
+          <div style={style}>
+            <Paper zDepth={5}>
+              <form>
+                <br />
+                <br />
+                <TextField
+                  type="text"
+                  placeholder="email"
+                  onChange={this.handleUsername.bind(this)}
+                />
+                <br />
+                <TextField
+                  type="password"
+                  placeholder="password"
+                  onChange={this.handlePassword.bind(this)}
+                />
+                <br />
+                <br />
+                <RaisedButton label="Log In" onClick={this.userLogin.bind(this)} />
+                <br />
+                <br />
+              </form>
+            </Paper>
+          </div>
         </div>
-
-
       </div>
     );
   }
