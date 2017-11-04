@@ -15,6 +15,8 @@ const styles = {
   },
 };
 
+const style = {margin: 5};
+
 class Header extends Component {
   constructor() {
     super();
@@ -23,23 +25,28 @@ class Header extends Component {
   userLogout(){
     localStorage.removeItem('loggedInUserName');
     window.location.href = '/';
-
   }
 
   redirectDashboard(){
     window.location.href = '/dashboard';
-
   }
 
   render() {
     return (
       <div className="header">
         <AppBar style={{ backgroundColor: '#9E9E9E'}}
-          title={<span style={styles.title}>BluePrint</span>}
+          title={<span style={styles.title}>NAME</span>}
           onTitleTouchTap={this.redirectDashboard.bind(this)}
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+          iconElementRight={<Avatar
+          size={50}
+        >
+          J
+        </Avatar>
+
+          }
           onLeftIconButtonTouchTap={this.userLogout.bind(this)}
-          iconElementRight={<Avatar src="https:www.politiplatform.com/img/politicians/donald_trump/avatar.jpg" />}
+
         />
       </div>
     );
