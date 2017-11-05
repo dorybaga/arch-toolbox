@@ -31,15 +31,12 @@ class Schematic extends Component {
       pins: [],
       currentPos: { x: null, y: null },
       activate: false,
-      modalIsOpen: false,
-      pinList: []
+      modalIsOpen: false
     };
   }
 
   componentDidMount() {
-    console.log("projectId is", this.projectId);
     getProjectById(this.projectId).then(projectData => {
-      console.log("componentDidMount", projectData);
       localStorage.setItem("projectId", projectData[0].project.id);
       localStorage.setItem("schematicId", projectData[0].schematic.id);
       let schematicId = localStorage.getItem("schematicId");
@@ -52,7 +49,6 @@ class Schematic extends Component {
   }
 
   activatePins() {
-    console.log("pins activated");
     this.setState({
       activate: true
     });
@@ -95,6 +91,7 @@ class Schematic extends Component {
   }
 
   openModal() {
+    console.log("model open");
     this.setState({ modalIsOpen: true });
   }
 
@@ -103,9 +100,9 @@ class Schematic extends Component {
   }
 
   render() {
-    console.log(this.state.project);
-    console.log("PINS IN RENDER", this.state.pins);
-    console.log("schematic rendering");
+    // console.log(this.state.project);
+    // console.log("PINS IN RENDER", this.state.pins);
+    // console.log("schematic rendering");
 
     const pinLayer = {
       position: "relative",
@@ -118,7 +115,13 @@ class Schematic extends Component {
         <Header />
         <div className="pinLayer" style={pinLayer}>
           {this.state.pins.map(pin => {
-            return <Pin x={pin.x} y={pin.y} />;
+            return (
+              <div>
+                <a onClick={this.openModal.bind(this)}>
+                  <Pin x={pin.x} y={pin.y} />
+                </a>
+              </div>
+            );
           })}
         </div>
 
@@ -127,7 +130,7 @@ class Schematic extends Component {
             this.setState({
               currentPos: { x: data.position.x, y: data.position.y }
             });
-            console.log("x: ", data.position.x, "y:", data.position.y);
+            // console.log("x: ", data.position.x, "y:", data.position.y);
           }}
         >
           <img
