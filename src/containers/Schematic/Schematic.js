@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactCursorPosition from "react-cursor-position";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
 import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
@@ -21,9 +22,15 @@ const customStyles = {
   }
 };
 
-const style = {
-  marginRight: 20
+const pinBtn = {
+  margin: 0,
+  top: "auto",
+  right: 20,
+  bottom: 20,
+  left: "auto",
+  position: "fixed"
 };
+
 class Schematic extends Component {
   constructor(props) {
     super(props);
@@ -136,18 +143,16 @@ class Schematic extends Component {
             onClick={this.logPostition.bind(this)}
           />
         </ReactCursorPosition>
-        <FloatingActionButton
-          style={style}
-          onClick={this.activatePins.bind(this)}
-        >
-          Drop Pins
-        </FloatingActionButton>
 
         <Footer
           project={
             this.state.project ? this.state.project : "Props did not load"
           }
         />
+        <FloatingActionButton style={pinBtn}>
+          <ContentAdd />
+          <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
+        </FloatingActionButton>
       </div>
     );
   }
