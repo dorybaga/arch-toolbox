@@ -2,11 +2,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactCursorPosition from "react-cursor-position";
+import FloatingActionButton from "material-ui/FloatingActionButton";
 import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
 import Footer from "../../components/Footer.js";
-// import SchematicDwg from "../../components/SchematicDwg.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
 
@@ -21,6 +21,9 @@ const customStyles = {
   }
 };
 
+const style = {
+  marginRight: 20
+};
 class Schematic extends Component {
   constructor(props) {
     super(props);
@@ -60,12 +63,7 @@ class Schematic extends Component {
       let userId = localStorage.getItem("loggedInUserId");
       let schematicId = localStorage.getItem("schematicId");
       let projectId = localStorage.getItem("projectId");
-      // console.log("projectId", projectId);
-      // console.log("schematicId", schematicId);
-      // console.log("username =", username);
-      // console.log("userId", userId);
-      // console.log("x", this.state.position.x);
-      // console.log("y", this.state.position.y);
+
       let newPin = {
         x: this.state.currentPos.x,
         y: this.state.currentPos.y,
@@ -100,10 +98,6 @@ class Schematic extends Component {
   }
 
   render() {
-    // console.log(this.state.project);
-    // console.log("PINS IN RENDER", this.state.pins);
-    // console.log("schematic rendering");
-
     const pinLayer = {
       position: "relative",
       width: "100%",
@@ -130,7 +124,6 @@ class Schematic extends Component {
             this.setState({
               currentPos: { x: data.position.x, y: data.position.y }
             });
-            // console.log("x: ", data.position.x, "y:", data.position.y);
           }}
         >
           <img
@@ -143,7 +136,12 @@ class Schematic extends Component {
             onClick={this.logPostition.bind(this)}
           />
         </ReactCursorPosition>
-        <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
+        <FloatingActionButton
+          style={style}
+          onClick={this.activatePins.bind(this)}
+        >
+          Drop Pins
+        </FloatingActionButton>
 
         <Footer
           project={
