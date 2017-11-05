@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
 import Footer from "../../components/Footer.js";
-import SchematicDwg from "../../components/SchematicDwg.js";
+// import SchematicDwg from "../../components/SchematicDwg.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
 
@@ -29,13 +29,17 @@ class Schematic extends Component {
       project: null,
       schematic: null,
       pins: [],
+      currentPos: { x: null, y: null },
       activate: false,
-      modalIsOpen: false
+      modalIsOpen: false,
+      pinList: []
     };
   }
 
   componentDidMount() {
+    console.log("projectId is", this.projectId);
     getProjectById(this.projectId).then(projectData => {
+      console.log("componentDidMount", projectData);
       localStorage.setItem("projectId", projectData[0].project.id);
       localStorage.setItem("schematicId", projectData[0].schematic.id);
       let schematicId = localStorage.getItem("schematicId");
@@ -48,46 +52,46 @@ class Schematic extends Component {
   }
 
   activatePins() {
+    console.log("pins activated");
     this.setState({
       activate: true
     });
   }
 
-  logPostition() {
-    // if (this.state.activate === true) {
-    //   let username = localStorage.getItem("loggedInUserName");
-    //   let userId = localStorage.getItem("loggedInUserId");
-    //   let schematicId = localStorage.getItem("schematicId");
-    //   let projectId = localStorage.getItem("projectId");
-    //   // console.log("projectId", projectId);
-    //   // console.log("schematicId", schematicId);
-    //   // console.log("username =", username);
-    //   // console.log("userId", userId);
-    //   console.log(this.props.position);
-    //   // console.log("x", this.state.position.x);
-    //   // console.log("y", this.state.position.y);
-    //   let newPin = {
-    //     x: this.state.position.x,
-    //     y: this.state.position.y,
-    //     user_id: userId,
-    //     project_id: projectId,
-    //     schematic_id: schematicId
-    //   };
-    //   axios
-    //     .post("/api/pins", newPin)
-    //     .then(function(response) {
-    //       console.log("new pin dropped", response);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    //   this.setState({
-    //     pinList: [...this.state.pinList, this.state.position],
-    //     activate: false
-    //   });
-    // } else {
-    //   console.log("hit the button");
-    // }
+  logPostition(x, y) {
+    if (this.state.activate === true) {
+      let username = localStorage.getItem("loggedInUserName");
+      let userId = localStorage.getItem("loggedInUserId");
+      let schematicId = localStorage.getItem("schematicId");
+      let projectId = localStorage.getItem("projectId");
+      // console.log("projectId", projectId);
+      // console.log("schematicId", schematicId);
+      // console.log("username =", username);
+      // console.log("userId", userId);
+      // console.log("x", this.state.position.x);
+      // console.log("y", this.state.position.y);
+      let newPin = {
+        x: this.state.currentPos.x,
+        y: this.state.currentPos.y,
+        user_id: userId,
+        project_id: projectId,
+        schematic_id: schematicId
+      };
+      axios
+        .post("/api/pins", newPin)
+        .then(function(response) {
+          console.log("new pin dropped", response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      this.setState({
+        pins: [...this.state.pins, this.state.currentPos],
+        activate: false
+      });
+    } else {
+      console.log("hit the button");
+    }
   }
 
   openModal() {
@@ -100,7 +104,7 @@ class Schematic extends Component {
 
   render() {
     console.log(this.state.project);
-    console.log(this.state.pins);
+    console.log("PINS IN RENDER", this.state.pins);
     console.log("schematic rendering");
 
     const pinLayer = {
@@ -117,16 +121,26 @@ class Schematic extends Component {
             return <Pin x={pin.x} y={pin.y} />;
           })}
         </div>
-        <ReactCursorPosition>
-          <SchematicDwg
-            schematic={
+
+        <ReactCursorPosition
+          onPositionChanged={data => {
+            this.setState({
+              currentPos: { x: data.position.x, y: data.position.y }
+            });
+            console.log("x: ", data.position.x, "y:", data.position.y);
+          }}
+        >
+          <img
+            src={
               this.state.schematic
                 ? this.state.schematic.image_url
                 : "Props did not load"
             }
+            style={{ zIndex: -50 }}
+            onClick={this.logPostition.bind(this)}
           />
-          <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
         </ReactCursorPosition>
+        <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
 
         <Footer
           project={

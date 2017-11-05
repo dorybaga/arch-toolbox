@@ -17,6 +17,7 @@ export const getProjectById = projectId => {
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function() {
       var parseData = JSON.parse(this.responseText);
+      console.log("RESPONSE", parseData);
       resolve(parseData);
     });
 
