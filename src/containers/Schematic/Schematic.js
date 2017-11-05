@@ -149,9 +149,11 @@ class Schematic extends Component {
             this.state.project ? this.state.project : "Props did not load"
           }
         />
-        <FloatingActionButton style={pinBtn}>
+        <FloatingActionButton
+          onClick={this.activatePins.bind(this)}
+          style={pinBtn}
+        >
           <ContentAdd />
-          <button onClick={this.activatePins.bind(this)}>Drop Pins</button>
         </FloatingActionButton>
       </div>
     );
