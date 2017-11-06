@@ -140,7 +140,7 @@ class Schematic extends Component {
           style={style}
           onClick={this.activatePins.bind(this)}
         >
-          Drop Pins
+          Pin
         </FloatingActionButton>
 
         <Footer
