@@ -121,6 +121,15 @@ class Schematic extends Component {
                 <a onClick={this.openModal.bind(this)}>
                   <Pin x={pin.x} y={pin.y} />
                 </a>
+
+                <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onRequestClose={this.closeModal.bind(this)}
+                  style={customStyles}
+                >
+                  <button onClick={this.closeModal.bind(this)}>Close</button>
+                  <ModalContent />
+                </Modal>
               </div>
             );
           })}
