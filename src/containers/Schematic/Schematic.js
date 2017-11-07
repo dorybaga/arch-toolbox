@@ -98,16 +98,16 @@ class Schematic extends Component {
   }
 
   render() {
-    const pinLayer = {
-      position: "relative",
-      width: "100%",
-      height: "100%"
-    };
+    // const pinLayer = {
+    //   position: "relative",
+    //   width: "100%",
+    //   height: "100%"
+    // };
 
     return (
-      <div>
+      <div className="schematicCanvas">
         <Header />
-        <div className="pinLayer" style={pinLayer}>
+        <div className="pinLayer">
           {this.state.pins.map(pin => {
             return (
               <div>
