@@ -4,6 +4,9 @@ import axios from "axios";
 import ReactCursorPosition from "react-cursor-position";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
@@ -41,7 +44,7 @@ class Schematic extends Component {
       pins: [],
       currentPos: { x: null, y: null },
       activate: false,
-      modalIsOpen: false
+      open: false
     };
   }
 
@@ -95,13 +98,13 @@ class Schematic extends Component {
     }
   }
 
-  openModal() {
+  handleOpen() {
     console.log("model open");
-    this.setState({ modalIsOpen: true });
+    this.setState({ open: true });
   }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  handleClose() {
+    this.setState({ open: false });
   }
 
   render() {
@@ -111,6 +114,20 @@ class Schematic extends Component {
       height: "100%"
     };
 
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose.bind(this)}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose.bind(this)}
+      />
+    ];
+
     return (
       <div>
         <Header />
@@ -118,18 +135,19 @@ class Schematic extends Component {
           {this.state.pins.map(pin => {
             return (
               <div>
-                <a onClick={this.openModal.bind(this)}>
+                <a onClick={this.handleOpen.bind(this)}>
                   <Pin x={pin.x} y={pin.y} />
                 </a>
 
-                <Modal
-                  isOpen={this.state.modalIsOpen}
-                  onRequestClose={this.closeModal.bind(this)}
-                  style={customStyles}
+                <Dialog
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose.bind(this)}
+                  autoScrollBodyContent={true}
                 >
-                  <button onClick={this.closeModal.bind(this)}>Close</button>
                   <ModalContent />
-                </Modal>
+                </Dialog>
               </div>
             );
           })}
