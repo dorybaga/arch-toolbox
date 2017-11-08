@@ -3,6 +3,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactCursorPosition from "react-cursor-position";
 import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import RaisedButton from "material-ui/RaisedButton";
 import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
@@ -21,9 +25,15 @@ const customStyles = {
   }
 };
 
-const style = {
-  marginRight: 20
+const pinBtn = {
+  margin: 0,
+  top: "auto",
+  right: 20,
+  bottom: 20,
+  left: "auto",
+  position: "fixed"
 };
+
 class Schematic extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +44,7 @@ class Schematic extends Component {
       pins: [],
       currentPos: { x: null, y: null },
       activate: false,
-      modalIsOpen: false
+      open: false
     };
   }
 
@@ -88,13 +98,13 @@ class Schematic extends Component {
     }
   }
 
-  openModal() {
+  handleOpen() {
     console.log("model open");
-    this.setState({ modalIsOpen: true });
+    this.setState({ open: true });
   }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  handleClose() {
+    this.setState({ open: false });
   }
 
   render() {
@@ -104,6 +114,20 @@ class Schematic extends Component {
       height: "100%"
     };
 
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose.bind(this)}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose.bind(this)}
+      />
+    ];
+
     return (
       <div>
         <Header />
@@ -111,9 +135,19 @@ class Schematic extends Component {
           {this.state.pins.map(pin => {
             return (
               <div>
-                <a onClick={this.openModal.bind(this)}>
+                <a onClick={this.handleOpen.bind(this)}>
                   <Pin x={pin.x} y={pin.y} />
                 </a>
+
+                <Dialog
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose.bind(this)}
+                  autoScrollBodyContent={true}
+                >
+                  <ModalContent />
+                </Dialog>
               </div>
             );
           })}
@@ -136,18 +170,18 @@ class Schematic extends Component {
             onClick={this.logPostition.bind(this)}
           />
         </ReactCursorPosition>
-        <FloatingActionButton
-          style={style}
-          onClick={this.activatePins.bind(this)}
-        >
-          Drop Pins
-        </FloatingActionButton>
 
         <Footer
           project={
             this.state.project ? this.state.project : "Props did not load"
           }
         />
+        <FloatingActionButton
+          onClick={this.activatePins.bind(this)}
+          style={pinBtn}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }
