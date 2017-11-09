@@ -95,9 +95,7 @@ class Schematic extends Component {
   }
 
   addPhoto() {
-    // axios request add photo to bucket
     let userId = localStorage.getItem("loggedInUserId");
-
     let newPhoto = {
       pin_id: this.state.currentPinId,
       user_id: userId
@@ -132,12 +130,6 @@ class Schematic extends Component {
   }
 
   render() {
-    // const pinLayer = {
-    //   position: "relative",
-    //   width: "100%",
-    //   height: "100%"
-    // };
-
     const actions = [
       <FlatButton
         label="Cancel"

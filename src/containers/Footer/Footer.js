@@ -15,8 +15,9 @@ class Footer extends Component {
 
   getPhoto() {
     console.log("fired");
+    let projectId = localStorage.getItem("projectId");
     axios
-      .get("/api/projects/:id")
+      .get(`/api/projects/${projectId}`)
       .then(function(response) {
         console.log("getPhoto RESPONSE", response);
       })
@@ -26,12 +27,13 @@ class Footer extends Component {
   }
 
   render() {
+    console.log("this is the project data from the footer", this.props.project);
     return (
       <div className="projectFooter">
         <Card style={{backgroundColor: "#E0E0E0"}}>
           <CardHeader
             title="Project Details"
-            subtitle="subtitle"
+            subtitle={this.props.project.title}
             actAsExpander={true}
             showExpandableButton={true}
           />
@@ -40,9 +42,9 @@ class Footer extends Component {
             <FlatButton label="Comments" />
           </CardActions>
           <CardText expandable={true}>
-            <div>Project ID:</div>
-            <div>Project Address:</div>
-            <div>Project Client:</div>
+            <div>Project ID: {this.props.project.id} </div>
+            <div>Project Address: {this.props.project.address} </div>
+            <div>Project Client: {this.props.project.client_name} </div>
           </CardText>
         </Card>
       </div>
