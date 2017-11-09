@@ -8,6 +8,7 @@ import "./index.css";
 import Dashboard from "./containers/Dashboard/Dashboard.js";
 import Login from "./containers/Login/Login.js";
 import Schematic from "./containers/Schematic/Schematic.js";
+import Gallery from "./containers/Gallery/Gallery.js";
 
 const style = {
   display: 'flex',
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route style={style} exact path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/project/:id" component={Schematic} />
+      <Route path="/gallery" component={Gallery} />
     </div>
     </MuiThemeProvider>
   </Router>,

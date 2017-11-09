@@ -8,7 +8,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
-import Footer from "../../components/Footer.js";
+import Footer from "../Footer/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
 
