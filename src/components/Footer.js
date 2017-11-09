@@ -1,11 +1,8 @@
 /*jshint esversion: 6 */
 import React from "react";
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
+import FlatButton from "material-ui/FlatButton";
 import "../index.css";
-
-const style = {
-};
 
 const Footer = ({ project }) => {
   return (

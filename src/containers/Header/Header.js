@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-import Avatar from 'material-ui/Avatar';
-import FontIcon from 'material-ui/FontIcon';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
@@ -21,8 +17,6 @@ const styles = {
 const chevron ={
   margin: 10
 };
-
-const style = {margin: 5};
 
 class Header extends Component {
   constructor() {
@@ -41,8 +35,8 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <AppBar style={{ backgroundColor: '#9E9E9E'}}
-          title={<span style={styles.title}>App Name</span>}
+        <AppBar
+          title={<span style={styles.title}>FieldMarker</span>}
           iconElementLeft={<i style={chevron} class="material-icons">chevron_left</i>}
           iconElementRight={
             <IconMenu

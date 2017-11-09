@@ -4,9 +4,6 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-import Avatar from 'material-ui/Avatar';
-import FontIcon from 'material-ui/FontIcon';
 import "../../index.css";
 
 const styles = {
@@ -34,8 +31,8 @@ class NoAvatarHeader extends Component {
   render() {
     return (
       <div className="header">
-        <AppBar style={{ backgroundColor: '#9E9E9E'}}
-          title={<span style={styles.title}>BluePrint</span>}
+        <AppBar
+          title={<span style={styles.title}>FieldMarker</span>}
           onTitleTouchTap={this.redirectDashboard.bind(this)}
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
           onLeftIconButtonTouchTap={this.userLogout.bind(this)}

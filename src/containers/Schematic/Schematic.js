@@ -3,27 +3,24 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactCursorPosition from "react-cursor-position";
 import FloatingActionButton from "material-ui/FloatingActionButton";
-import Modal from "react-modal";
+import ContentAdd from "material-ui/svg-icons/content/add";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
 import Footer from "../../components/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
+const pinBtn = {
+  margin: 0,
+  top: "auto",
+  right: 200,
+  bottom: 20,
+  left: "auto",
+  position: "fixed"
 };
 
-const style = {
-  marginRight: 20
-};
 class Schematic extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +31,7 @@ class Schematic extends Component {
       pins: [],
       currentPos: { x: null, y: null },
       activate: false,
-      modalIsOpen: false
+      open: false
     };
   }
 
@@ -88,13 +85,13 @@ class Schematic extends Component {
     }
   }
 
-  openModal() {
+  handleOpen() {
     console.log("model open");
-    this.setState({ modalIsOpen: true });
+    this.setState({ open: true });
   }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  handleClose() {
+    this.setState({ open: false });
   }
 
   render() {
@@ -104,16 +101,41 @@ class Schematic extends Component {
     //   height: "100%"
     // };
 
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose.bind(this)}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose.bind(this)}
+      />
+    ];
+
     return (
-      <div className="schematicCanvas">
+      <div>
         <Header />
-        <div className="pinLayer">
+        <div className="schematicCanvas">
+          <div className="pinLayer">
           {this.state.pins.map(pin => {
             return (
               <div>
-                <a onClick={this.openModal.bind(this)}>
+                <a onClick={this.handleOpen.bind(this)}>
                   <Pin x={pin.x} y={pin.y} />
                 </a>
+
+                <Dialog
+                  actions={actions}
+                  modal={false}
+                  open={this.state.open}
+                  onRequestClose={this.handleClose.bind(this)}
+                  autoScrollBodyContent={true}
+                >
+                  <ModalContent />
+                </Dialog>
               </div>
             );
           })}
@@ -126,28 +148,32 @@ class Schematic extends Component {
             });
           }}
         >
-          <img
+          <div className="imageLayer">
+            <img className="image"
             src={
               this.state.schematic
                 ? this.state.schematic.image_url
                 : "Props did not load"
             }
-            style={{ zIndex: -50 }}
+
             onClick={this.logPostition.bind(this)}
           />
+          </div>
         </ReactCursorPosition>
-        <FloatingActionButton
-          style={style}
-          onClick={this.activatePins.bind(this)}
-        >
-          Pin
-        </FloatingActionButton>
+        </div>
+
 
         <Footer
           project={
             this.state.project ? this.state.project : "Props did not load"
           }
         />
+        <FloatingActionButton
+          onClick={this.activatePins.bind(this)}
+          style={pinBtn}
+        >
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
     );
   }
