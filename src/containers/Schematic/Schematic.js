@@ -6,29 +6,16 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
-import RaisedButton from "material-ui/RaisedButton";
-import Modal from "react-modal";
 import ModalContent from "../../containers/ModalContent/ModalContent.js";
 import Header from "../Header/Header.js";
 import Footer from "../../components/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
-};
-
 const pinBtn = {
   margin: 0,
   top: "auto",
-  right: 20,
+  right: 200,
   bottom: 20,
   left: "auto",
   position: "fixed"
@@ -108,11 +95,11 @@ class Schematic extends Component {
   }
 
   render() {
-    const pinLayer = {
-      position: "relative",
-      width: "100%",
-      height: "100%"
-    };
+    // const pinLayer = {
+    //   position: "relative",
+    //   width: "100%",
+    //   height: "100%"
+    // };
 
     const actions = [
       <FlatButton
@@ -131,7 +118,8 @@ class Schematic extends Component {
     return (
       <div>
         <Header />
-        <div className="pinLayer" style={pinLayer}>
+        <div className="schematicCanvas">
+          <div className="pinLayer">
           {this.state.pins.map(pin => {
             return (
               <div>
@@ -160,16 +148,20 @@ class Schematic extends Component {
             });
           }}
         >
-          <img
+          <div className="imageLayer">
+            <img className="image"
             src={
               this.state.schematic
                 ? this.state.schematic.image_url
                 : "Props did not load"
             }
-            style={{ zIndex: -50 }}
+
             onClick={this.logPostition.bind(this)}
           />
+          </div>
         </ReactCursorPosition>
+        </div>
+
 
         <Footer
           project={
