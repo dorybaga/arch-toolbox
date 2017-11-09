@@ -17,7 +17,9 @@ class Gallery extends Component {
     return (
       <div>
         <Header />
-        <h1>Test</h1>
+        <div className="gallery">
+
+        </div>
         <Footer />
       </div>
     );
