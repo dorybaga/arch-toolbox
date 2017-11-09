@@ -43,6 +43,7 @@ class Schematic extends Component {
       schematic: null,
       pins: [],
       currentPos: { x: null, y: null },
+      currentPinId: null,
       activate: false,
       open: false
     };
@@ -98,9 +99,35 @@ class Schematic extends Component {
     }
   }
 
-  handleOpen() {
-    console.log("model open");
-    this.setState({ open: true });
+  addPhoto() {
+    // axios request add photo to bucket
+    let userId = localStorage.getItem("loggedInUserId");
+
+    let newPhoto = {
+      pin_id: this.state.currentPinId,
+      user_id: userId
+    };
+    axios
+      .post("/api/images", newPhoto)
+      .then(function(response) {
+        console.log("your photo was added to the bucket!", response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    this.setState({
+      open: false
+    });
+  }
+
+  handleOpen(pinId) {
+    console.log("current pinId from handleOpen", pinId);
+    // if pin clicked on id === this.state.pins[].id then..
+    this.setState({
+      currentPinId: pinId,
+      open: true
+    });
   }
 
   handleClose() {
@@ -124,7 +151,7 @@ class Schematic extends Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose.bind(this)}
+        onClick={this.addPhoto.bind(this)}
       />
     ];
 
@@ -135,8 +162,12 @@ class Schematic extends Component {
           {this.state.pins.map(pin => {
             return (
               <div>
-                <a onClick={this.handleOpen.bind(this)}>
-                  <Pin x={pin.x} y={pin.y} />
+                <a
+                  onClick={() => {
+                    this.handleOpen(pin.id);
+                  }}
+                >
+                  <Pin x={pin.x} y={pin.y} pinId={pin.id} />
                 </a>
 
                 <Dialog
