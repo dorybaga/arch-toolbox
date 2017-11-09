@@ -103,7 +103,7 @@ class Schematic extends Component {
       user_id: userId
     };
     axios
-      .post("/api/images", newPhoto)
+      .post("/api/projects/1/images", newPhoto)
       .then(function(response) {
         console.log("your photo was added to the bucket!", response);
       })
@@ -118,6 +118,8 @@ class Schematic extends Component {
 
   handleOpen(pinId) {
     console.log("current pinId from handleOpen", pinId);
+    localStorage.setItem("pinId", pinId);
+
     this.setState({
       currentPinId: pinId,
       open: true
@@ -157,52 +159,51 @@ class Schematic extends Component {
         <Header />
         <div className="schematicCanvas">
           <div className="pinLayer">
-          {this.state.pins.map(pin => {
-            return (
-              <div>
-                <a
-                  onClick={() => {
-                    this.handleOpen(pin.id);
-                  }}
-                >
-                  <Pin x={pin.x} y={pin.y} pinId={pin.id} />
-                </a>
+            {this.state.pins.map(pin => {
+              return (
+                <div>
+                  <a
+                    onClick={() => {
+                      this.handleOpen(pin.id);
+                    }}
+                  >
+                    <Pin x={pin.x} y={pin.y} pinId={pin.id} />
+                  </a>
 
-                <Dialog
-                  actions={actions}
-                  modal={false}
-                  open={this.state.open}
-                  onRequestClose={this.handleClose.bind(this)}
-                  autoScrollBodyContent={true}
-                >
-                  <ModalContent />
-                </Dialog>
-              </div>
-            );
-          })}
-        </div>
-
-        <ReactCursorPosition
-          onPositionChanged={data => {
-            this.setState({
-              currentPos: { x: data.position.x, y: data.position.y }
-            });
-          }}
-        >
-          <div className="imageLayer">
-            <img className="image"
-            src={
-              this.state.schematic
-                ? this.state.schematic.image_url
-                : "Props did not load"
-            }
-
-            onClick={this.logPostition.bind(this)}
-          />
+                  <Dialog
+                    actions={actions}
+                    modal={false}
+                    open={this.state.open}
+                    onRequestClose={this.handleClose.bind(this)}
+                    autoScrollBodyContent={true}
+                  >
+                    <ModalContent />
+                  </Dialog>
+                </div>
+              );
+            })}
           </div>
-        </ReactCursorPosition>
-        </div>
 
+          <ReactCursorPosition
+            onPositionChanged={data => {
+              this.setState({
+                currentPos: { x: data.position.x, y: data.position.y }
+              });
+            }}
+          >
+            <div className="imageLayer">
+              <img
+                className="image"
+                src={
+                  this.state.schematic
+                    ? this.state.schematic.image_url
+                    : "Props did not load"
+                }
+                onClick={this.logPostition.bind(this)}
+              />
+            </div>
+          </ReactCursorPosition>
+        </div>
 
         <Footer
           project={

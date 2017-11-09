@@ -2,17 +2,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import NoAvatarHeader from "../Header/NoAvatarHeader.js";
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
+import RaisedButton from "material-ui/RaisedButton";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
+import pinImg from "../../assets/pin.svg";
 import "../../index.css";
 
 const style = {
-  backgroundColor: 'white',
-  height: '100%',
-  width: '100%',
-  textAlign: 'center',
-  display: 'center',
+  backgroundColor: "white",
+  height: "100%",
+  width: "100%",
+  textAlign: "center",
+  display: "center"
 };
 
 class Login extends Component {
@@ -32,15 +33,15 @@ class Login extends Component {
     };
 
     axios.post("/api/login", userObj).then(res => {
-      localStorage.removeItem('loggedInUserName');
-      localStorage.setItem('loggedInUserName', res.data.firstName);
-      localStorage.removeItem('loggedInUserId');
-      localStorage.setItem('loggedInUserId',res.data.id);
-      let username = localStorage.getItem('loggedInUserName');
-      let userId = localStorage.getItem('loggedInUserId');
+      localStorage.removeItem("loggedInUserName");
+      localStorage.setItem("loggedInUserName", res.data.firstName);
+      localStorage.removeItem("loggedInUserId");
+      localStorage.setItem("loggedInUserId", res.data.id);
+      let username = localStorage.getItem("loggedInUserName");
+      let userId = localStorage.getItem("loggedInUserId");
       console.log("username =", username);
       console.log("userId", userId);
-      window.location.href = '/dashboard';
+      window.location.href = "/dashboard";
     });
     console.log("email:", this.state.email);
     console.log("password:", this.state.password);
@@ -66,8 +67,10 @@ class Login extends Component {
           <div style={style}>
             <Paper zDepth={5}>
               <form>
-                <br />
-                <br />
+                <div className="logo">
+                  <img src={pinImg} />
+                </div>
+
                 <TextField
                   type="text"
                   placeholder="email"
@@ -81,7 +84,10 @@ class Login extends Component {
                 />
                 <br />
                 <br />
-                <RaisedButton label="Log In" onClick={this.userLogin.bind(this)} />
+                <RaisedButton
+                  label="Log In"
+                  onClick={this.userLogin.bind(this)}
+                />
                 <br />
                 <br />
               </form>
