@@ -68,7 +68,7 @@ class Schematic extends Component {
     });
   }
 
-  logPostition(x, y) {
+  logPostition(x, y, pinId) {
     if (this.state.activate === true) {
       let username = localStorage.getItem("loggedInUserName");
       let userId = localStorage.getItem("loggedInUserId");
@@ -82,18 +82,26 @@ class Schematic extends Component {
         project_id: projectId,
         schematic_id: schematicId
       };
+
+      console.log(newPin);
+
       axios
         .post("/api/pins", newPin)
-        .then(function(response) {
+        .then(response => {
           console.log("new pin dropped", response);
+          console.log("new pin id", response.data.id);
+          this.setState(
+            {
+              currentPinId: response.data.id,
+              pins: [...this.state.pins, response.data],
+              activate: false
+            },
+            () => console.log("checking state", this.state)
+          );
         })
         .catch(function(error) {
           console.log(error);
         });
-      this.setState({
-        pins: [...this.state.pins, this.state.currentPos],
-        activate: false
-      });
     } else {
       console.log("hit the button");
     }
@@ -123,7 +131,6 @@ class Schematic extends Component {
 
   handleOpen(pinId) {
     console.log("current pinId from handleOpen", pinId);
-    // if pin clicked on id === this.state.pins[].id then..
     this.setState({
       currentPinId: pinId,
       open: true
@@ -131,7 +138,10 @@ class Schematic extends Component {
   }
 
   handleClose() {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      currentPinId: null
+    });
   }
 
   render() {
