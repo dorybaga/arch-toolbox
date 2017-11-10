@@ -11,7 +11,9 @@ class ModalContent extends Component {
     super(props);
 
     this.state = {
-      pinImageUrl: ""
+      pinImageUrl: "",
+      projectId: localStorage.getItem("projectId"),
+      pinId: localStorage.getItem("pinId")
     };
   }
 
@@ -19,14 +21,44 @@ class ModalContent extends Component {
     this.getPinPhoto();
   }
 
-  getPinPhoto() {
+  addPhoto() {
+    let userId = localStorage.getItem("loggedInUserId");
     let projectId = localStorage.getItem("projectId");
-    let pinId = localStorage.getItem("pinId");
-    axios.get(`/api/projects/${projectId}/pin/${pinId}`).then(image => {
-      this.setState({
-        pinImageUrl: image.data[0].images[0].image_url
+    let newPhoto = {
+      pin_id: this.state.currentPinId,
+      user_id: userId
+    };
+
+    axios
+      .post(`/api/projects/${projectId}/images`, newPhoto)
+      .then(function(response) {
+        console.log(
+          "photo from project " + projectId + " was added to the bucket"
+        );
+      })
+      .catch(function(error) {
+        console.log(error);
       });
+
+    this.setState({
+      open: false
     });
+  }
+
+  getPinPhoto() {
+    // let projectId = localStorage.getItem("projectId");
+    // let pinId = localStorage.getItem("pinId");
+    axios
+      .get(`/api/projects/${this.state.projectId}/pin/${this.state.pinId}`)
+      .then(image => {
+        if (image.data[0].images.length) {
+          this.setState({
+            pinImageUrl: image.data[0].images[0].image_url
+          });
+        } else {
+          console.log("no image");
+        }
+      });
   }
 
   render() {

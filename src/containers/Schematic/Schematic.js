@@ -94,30 +94,6 @@ class Schematic extends Component {
     }
   }
 
-  addPhoto() {
-    let userId = localStorage.getItem("loggedInUserId");
-    let projectId = localStorage.getItem("projectId");
-    let newPhoto = {
-      pin_id: this.state.currentPinId,
-      user_id: userId
-    };
-
-    axios
-      .post(`/api/projects/${projectId}/images`, newPhoto)
-      .then(function(response) {
-        console.log(
-          "photo from project " + projectId + " was added to the bucket"
-        );
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-    this.setState({
-      open: false
-    });
-  }
-
   handleOpen(pinId) {
     console.log("current pinId from handleOpen", pinId);
     localStorage.setItem("pinId", pinId);
@@ -142,12 +118,7 @@ class Schematic extends Component {
         primary={true}
         onClick={this.handleClose.bind(this)}
       />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.addPhoto.bind(this)}
-      />
+      <FlatButton label="Submit" primary={true} keyboardFocused={true} />
     ];
 
     return (
