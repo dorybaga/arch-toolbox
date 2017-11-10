@@ -1,9 +1,13 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
+.logo {
+  width: 125px;
+  height: 125px;
+}
 .pin {
   width: 50px;
   height: 50px;
@@ -18,6 +22,7 @@ body {
 }
 
 .login {
+  display: flex;
   padding-top: 25%;
   justify-content: center;
   align-content: center;
@@ -48,7 +53,6 @@ body {
   top: 9%;
   height: 575px;
   width: 100%;
-
 }
 
 .pinLayer {

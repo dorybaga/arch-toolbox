@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
-import React, { Component } from 'react';
-import pinImg from '../../assets/pin-black-yellow.svg';
+import React, { Component } from "react";
+import pinImg from "../../assets/pin.svg";
 
 class Pin extends Component {
   constructor(props) {
@@ -15,9 +15,9 @@ class Pin extends Component {
     };
     return (
       <div>
-          <div className="pin" style={pinStyles}>
-            <img src={pinImg} alt={"pin"} />
-          </div>
+        <div className="pin" style={pinStyles}>
+          <img src={pinImg} alt={"pin"} />
+        </div>
       </div>
     );
   }

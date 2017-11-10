@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import Camera from "../../components/Camera.js";
 
 class ModalContent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
