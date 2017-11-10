@@ -23,7 +23,6 @@ ReactDOM.render(
       <Route style={style} exact path="/" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/project/:id" component={Schematic} />
-      <Route path="/gallery" component={Gallery} />
     </div>
     </MuiThemeProvider>
   </Router>,

@@ -32,7 +32,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    axios.post("/api/login", userObj).then(res => {
+    axios.post("https://mobile.fieldmarkapp.com/api/login", userObj).then(res => {
       localStorage.removeItem("loggedInUserName");
       localStorage.setItem("loggedInUserName", res.data.firstName);
       localStorage.removeItem("loggedInUserId");

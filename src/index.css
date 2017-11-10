@@ -78,11 +78,5 @@ body {
 }
 
 .gallery {
-  background-color: red;
-  border-color: black;
-  border-style: dotted;
-  position: absolute;
-  top: 9%;
-  height: 575px;
-  width: 100%;
+
 }
