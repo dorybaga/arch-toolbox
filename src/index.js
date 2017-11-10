@@ -8,7 +8,6 @@ import "./index.css";
 import Dashboard from "./containers/Dashboard/Dashboard.js";
 import Login from "./containers/Login/Login.js";
 import Schematic from "./containers/Schematic/Schematic.js";
-import Gallery from "./containers/Gallery/Gallery.js";
 
 const style = {
   display: 'flex',
