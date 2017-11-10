@@ -80,3 +80,13 @@ body {
 .loginButton {
   cursor: pointer;
 }
+
+.imageBox {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.imagePreview {
+  height: 100%;
+  width: 100%;
+}

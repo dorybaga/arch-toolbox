@@ -11,6 +11,7 @@ import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
+import LinearProgress from "material-ui/LinearProgress";
 
 const pinBtn = {
   margin: 0,
@@ -103,7 +104,10 @@ class Schematic extends Component {
     };
 
     axios
-      .post(`https://fieldmarkapp.com/api/projects/${projectId}/images`, newPhoto)
+      .post(
+        `https://fieldmarkapp.com/api/projects/${projectId}/images`,
+        newPhoto
+      )
       .then(function(response) {
         console.log(
           "photo from project " + projectId + " was added to the bucket"
@@ -120,6 +124,7 @@ class Schematic extends Component {
 
   handleOpen(pinId) {
     console.log("current pinId from handleOpen", pinId);
+
     localStorage.setItem("pinId", pinId);
 
     this.setState({
@@ -142,12 +147,7 @@ class Schematic extends Component {
         primary={true}
         onClick={this.handleClose.bind(this)}
       />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.addPhoto.bind(this)}
-      />
+      <FlatButton label="Submit" primary={true} keyboardFocused={true} />
     ];
 
     return (
