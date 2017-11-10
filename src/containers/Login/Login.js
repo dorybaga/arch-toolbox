@@ -8,6 +8,7 @@ import TextField from "material-ui/TextField";
 import pinImg from "../../assets/pin.svg";
 import "../../index.css";
 
+
 const style = {
   backgroundColor: "white",
   height: "100%",
@@ -17,12 +18,13 @@ const style = {
 };
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: ""
     };
+
   }
 
   userLogin(e) {
@@ -41,7 +43,7 @@ class Login extends Component {
       let userId = localStorage.getItem("loggedInUserId");
       console.log("username =", username);
       console.log("userId", userId);
-      window.location.href = "/dashboard";
+      this.props.history.push('/dashboard');
     });
     console.log("email:", this.state.email);
     console.log("password:", this.state.password);
