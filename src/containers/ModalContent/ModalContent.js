@@ -13,37 +13,13 @@ class ModalContent extends Component {
     this.state = {
       pinImageUrl: "",
       projectId: localStorage.getItem("projectId"),
-      pinId: localStorage.getItem("pinId")
+      pinId: localStorage.getItem("pinId"),
+      image: null
     };
   }
 
   componentDidMount() {
     this.getPinPhoto();
-  }
-
-  addPhoto() {
-    let userId = localStorage.getItem("loggedInUserId");
-    let newPhoto = {
-      pin_id: this.state.pinId,
-      user_id: userId
-    };
-
-    axios
-      .post(`/api/projects/${this.state.projectId}/images`, newPhoto)
-      .then(function(response) {
-        console.log(
-          "photo from project " +
-            this.state.projectId +
-            " was added to the bucket"
-        );
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-    this.setState({
-      open: false
-    });
   }
 
   getPinPhoto() {
@@ -60,12 +36,44 @@ class ModalContent extends Component {
       });
   }
 
+  handleImageFile(e) {
+    console.log("handleImageFile", e.target.files);
+    this.setState({
+      image: e.target.files[0]
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.imageUpload(this.state.image);
+  }
+
+  imageUpload(image) {
+    let userId = localStorage.getItem("loggedInUserId");
+    console.log("image uplaoding", image);
+    const url = `/api/projects/${this.state.projectId}/images`;
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("pin_id", this.state.pinId);
+    formData.append("user_id", userId);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    axios.post(url, formData, config);
+  }
+
   render() {
     return (
       <div>
         <img src={this.state.pinImageUrl} />
         <Thumbnails />
-        <Camera />
+        <Camera
+          handleImageFile={this.handleImageFile.bind(this)}
+          onSubmit={this.onSubmit.bind(this)}
+        />
         {/* <CommentForm /> */}
       </div>
     );
