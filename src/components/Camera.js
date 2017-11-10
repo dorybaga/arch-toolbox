@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
 import React from "react";
+import FlatButton from "material-ui/FlatButton";
+
 // pull pin_id and user_id and
 
 const Camera = props => {
