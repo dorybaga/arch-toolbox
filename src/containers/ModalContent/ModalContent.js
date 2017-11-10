@@ -1,10 +1,9 @@
 /*jshint esversion: 6 */
 import React, { Component } from "react";
 import axios from "axios";
-
 import Camera from "../../components/Camera.js";
+
 // import CommentForm from "../Comments/CommentForm.js";
-import Thumbnails from "../../components/Thumbnails.js";
 
 class ModalContent extends Component {
   constructor(props) {
@@ -71,8 +70,10 @@ class ModalContent extends Component {
   render() {
     return (
       <div>
-        <img src={this.state.pinImageUrl} />
-        <Thumbnails />
+        <div className="imageBox">
+          <img src={this.state.pinImageUrl} className="imagePreview" />
+        </div>
+        }
         <Camera
           handleImageFile={this.handleImageFile.bind(this)}
           onSubmit={this.onSubmit.bind(this)}

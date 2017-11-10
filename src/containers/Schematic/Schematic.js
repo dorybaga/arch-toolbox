@@ -11,6 +11,7 @@ import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
+import LinearProgress from "material-ui/LinearProgress";
 
 const pinBtn = {
   margin: 0,
@@ -96,6 +97,7 @@ class Schematic extends Component {
 
   handleOpen(pinId) {
     console.log("current pinId from handleOpen", pinId);
+
     localStorage.setItem("pinId", pinId);
 
     this.setState({
