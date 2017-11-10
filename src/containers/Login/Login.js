@@ -86,7 +86,7 @@ class Login extends Component {
                 <br />
                 <br />
                 <RaisedButton
-                  style={{cursor: "pointer"}}
+                  className="loginButton"
                   label="Log In"
                   onClick={this.userLogin.bind(this)}
                 />
