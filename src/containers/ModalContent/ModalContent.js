@@ -23,7 +23,10 @@ class ModalContent extends Component {
 
   getPinPhoto() {
     axios
-      .get(`https://fieldmarkapp.com/api/projects/${projectId}/pin/${pinId}`)
+      .get(
+        `https://fieldmarkapp.com/api/projects/${this.state
+          .projectId}/pin/${this.state.pinId}`
+      )
       .then(image => {
         if (image.data[0].images.length) {
           this.setState({
@@ -54,7 +57,8 @@ class ModalContent extends Component {
 
   imageUpload(image) {
     let userId = localStorage.getItem("loggedInUserId");
-    const url = `/api/projects/${this.state.projectId}/images`;
+    const url = `https://fieldmarkapp.com/api/projects/${this.state
+      .projectId}/images`;
     const formData = new FormData();
     formData.append("image", image);
     formData.append("pin_id", this.state.pinId);
@@ -73,7 +77,6 @@ class ModalContent extends Component {
         <div className="imageBox">
           <img src={this.state.pinImageUrl} className="imagePreview" />
         </div>
-        }
         <Camera
           handleImageFile={this.handleImageFile.bind(this)}
           onSubmit={this.onSubmit.bind(this)}

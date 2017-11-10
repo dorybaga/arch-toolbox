@@ -11,7 +11,6 @@ import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import { getProjectById } from "../../lib/projects-api";
 import Pin from "../../containers/Pin/Pin.js";
-import LinearProgress from "material-ui/LinearProgress";
 
 const pinBtn = {
   margin: 0,
@@ -146,8 +145,7 @@ class Schematic extends Component {
         label="Cancel"
         primary={true}
         onClick={this.handleClose.bind(this)}
-      />,
-      <FlatButton label="Submit" primary={true} keyboardFocused={true} />
+      />
     ];
 
     return (
