@@ -23,17 +23,18 @@ class ModalContent extends Component {
 
   addPhoto() {
     let userId = localStorage.getItem("loggedInUserId");
-    let projectId = localStorage.getItem("projectId");
     let newPhoto = {
-      pin_id: this.state.currentPinId,
+      pin_id: this.state.pinId,
       user_id: userId
     };
 
     axios
-      .post(`/api/projects/${projectId}/images`, newPhoto)
+      .post(`/api/projects/${this.state.projectId}/images`, newPhoto)
       .then(function(response) {
         console.log(
-          "photo from project " + projectId + " was added to the bucket"
+          "photo from project " +
+            this.state.projectId +
+            " was added to the bucket"
         );
       })
       .catch(function(error) {
@@ -46,8 +47,6 @@ class ModalContent extends Component {
   }
 
   getPinPhoto() {
-    // let projectId = localStorage.getItem("projectId");
-    // let pinId = localStorage.getItem("pinId");
     axios
       .get(`/api/projects/${this.state.projectId}/pin/${this.state.pinId}`)
       .then(image => {
@@ -62,7 +61,6 @@ class ModalContent extends Component {
   }
 
   render() {
-    // console.log(this.state.pinImageUrl);
     return (
       <div>
         <img src={this.state.pinImageUrl} />
