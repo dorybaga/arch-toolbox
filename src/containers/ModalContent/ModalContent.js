@@ -22,7 +22,7 @@ class ModalContent extends Component {
   getPinPhoto() {
     let projectId = localStorage.getItem("projectId");
     let pinId = localStorage.getItem("pinId");
-    axios.get(`/api/projects/${projectId}/pin/${pinId}`).then(image => {
+    axios.get(`https://fieldmarkapp.com/api/projects/${projectId}/pin/${pinId}`).then(image => {
       this.setState({
         pinImageUrl: image.data[0].images[0].image_url
       });
