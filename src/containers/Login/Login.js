@@ -32,7 +32,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    axios.post("/api/login", userObj).then(res => {
+    axios.post("https://fieldmarkapp.com/api/login", userObj).then(res => {
       localStorage.removeItem("loggedInUserName");
       localStorage.setItem("loggedInUserName", res.data.firstName);
       localStorage.removeItem("loggedInUserId");
@@ -70,6 +70,7 @@ class Login extends Component {
                 <div className="logo">
                   <img src={pinImg} />
                 </div>
+                <br/>
 
                 <TextField
                   type="text"
@@ -85,6 +86,7 @@ class Login extends Component {
                 <br />
                 <br />
                 <RaisedButton
+                  className="loginButton"
                   label="Log In"
                   onClick={this.userLogin.bind(this)}
                 />

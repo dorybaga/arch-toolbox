@@ -74,7 +74,7 @@ class Schematic extends Component {
       console.log(newPin);
 
       axios
-        .post("/api/pins", newPin)
+        .post("https://fieldmarkapp.com/api/pins", newPin)
         .then(response => {
           console.log("new pin dropped", response);
           console.log("new pin id", response.data.id);
@@ -93,6 +93,33 @@ class Schematic extends Component {
     } else {
       console.log("hit the button");
     }
+  }
+
+  addPhoto() {
+    let userId = localStorage.getItem("loggedInUserId");
+    let projectId = localStorage.getItem("projectId");
+    let newPhoto = {
+      pin_id: this.state.currentPinId,
+      user_id: userId
+    };
+
+    axios
+      .post(
+        `https://fieldmarkapp.com/api/projects/${projectId}/images`,
+        newPhoto
+      )
+      .then(function(response) {
+        console.log(
+          "photo from project " + projectId + " was added to the bucket"
+        );
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    this.setState({
+      open: false
+    });
   }
 
   handleOpen(pinId) {
