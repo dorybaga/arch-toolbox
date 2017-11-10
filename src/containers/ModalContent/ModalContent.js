@@ -37,7 +37,6 @@ class ModalContent extends Component {
   }
 
   handleImageFile(e) {
-    console.log("handleImageFile", e.target.files);
     this.setState({
       image: e.target.files[0]
     });
@@ -45,12 +44,17 @@ class ModalContent extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.imageUpload(this.state.image);
+    this.imageUpload(this.state.image).then(response => {
+      if (response.data.statusCode === 200) {
+        this.getPinPhoto();
+      } else {
+        console.log("unsuccessful, could not post photo");
+      }
+    });
   }
 
   imageUpload(image) {
     let userId = localStorage.getItem("loggedInUserId");
-    console.log("image uplaoding", image);
     const url = `/api/projects/${this.state.projectId}/images`;
     const formData = new FormData();
     formData.append("image", image);
@@ -61,8 +65,7 @@ class ModalContent extends Component {
         "content-type": "multipart/form-data"
       }
     };
-
-    axios.post(url, formData, config);
+    return axios.post(url, formData, config);
   }
 
   render() {

@@ -10,12 +10,7 @@ const Camera = props => {
 
   return (
     <div>
-      <form
-        method="POST"
-        action={`/api/projects/${projectId}/images`}
-        encType="multipart/form-data"
-        onSubmit={props.onSubmit}
-      >
+      <form onSubmit={props.onSubmit}>
         <input
           type="file"
           name="image"
