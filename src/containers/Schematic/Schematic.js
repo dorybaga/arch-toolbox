@@ -96,14 +96,18 @@ class Schematic extends Component {
 
   addPhoto() {
     let userId = localStorage.getItem("loggedInUserId");
+    let projectId = localStorage.getItem("projectId");
     let newPhoto = {
       pin_id: this.state.currentPinId,
       user_id: userId
     };
+
     axios
-      .post("/api/projects/1/images", newPhoto)
+      .post(`/api/projects/${projectId}/images`, newPhoto)
       .then(function(response) {
-        console.log("your photo was added to the bucket!", response);
+        console.log(
+          "photo from project " + projectId + " was added to the bucket"
+        );
       })
       .catch(function(error) {
         console.log(error);

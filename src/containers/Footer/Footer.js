@@ -8,9 +8,7 @@ import "../../index.css";
 class Footer extends Component {
   constructor() {
     super();
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   getPhoto() {
@@ -27,10 +25,9 @@ class Footer extends Component {
   }
 
   render() {
-    console.log("this is the project data from the footer", this.props.project);
     return (
       <div className="projectFooter">
-        <Card style={{backgroundColor: "#E0E0E0"}}>
+        <Card style={{ backgroundColor: "#E0E0E0" }}>
           <CardHeader
             title="Project Details"
             subtitle={this.props.project.title}
@@ -38,7 +35,10 @@ class Footer extends Component {
             showExpandableButton={true}
           />
           <CardActions>
-            <FlatButton onClick={this.getPhoto.bind(this)} label="Photo Gallery" />
+            <FlatButton
+              onClick={this.getPhoto.bind(this)}
+              label="Photo Gallery"
+            />
             <FlatButton label="Comments" />
           </CardActions>
           <CardText expandable={true}>
