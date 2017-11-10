@@ -70,6 +70,7 @@ class Login extends Component {
                 <div className="logo">
                   <img src={pinImg} />
                 </div>
+                <br/>
 
                 <TextField
                   type="text"
