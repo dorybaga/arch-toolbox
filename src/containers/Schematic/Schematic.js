@@ -73,7 +73,7 @@ class Schematic extends Component {
       console.log(newPin);
 
       axios
-        .post("/api/pins", newPin)
+        .post("https://fieldmarkapp.com/api/pins", newPin)
         .then(response => {
           console.log("new pin dropped", response);
           console.log("new pin id", response.data.id);
@@ -103,7 +103,7 @@ class Schematic extends Component {
     };
 
     axios
-      .post(`/api/projects/${projectId}/images`, newPhoto)
+      .post(`https://fieldmarkapp.com/api/projects/${projectId}/images`, newPhoto)
       .then(function(response) {
         console.log(
           "photo from project " + projectId + " was added to the bucket"

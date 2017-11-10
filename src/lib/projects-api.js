@@ -7,7 +7,7 @@ export const getProjectsFromDB = () => {
       resolve(parseData);
     });
 
-    oReq.open("GET", "/api/projects");
+    oReq.open("GET", "https://fieldmarkapp.com/api/projects");
     oReq.send();
   });
 };
@@ -21,7 +21,7 @@ export const getProjectById = projectId => {
       resolve(parseData);
     });
 
-    oReq.open("GET", `/api/projects/${projectId}`);
+    oReq.open("GET", `https://fieldmarkapp.com/api/projects/${projectId}`);
     oReq.send();
   });
 };
