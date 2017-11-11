@@ -8,7 +8,6 @@ import TextField from "material-ui/TextField";
 import pinImg from "../../assets/pin.svg";
 import "../../index.css";
 
-
 const style = {
   backgroundColor: "white",
   height: "100%",
@@ -24,7 +23,6 @@ class Login extends Component {
       email: "",
       password: ""
     };
-
   }
 
   userLogin(e) {
@@ -41,12 +39,8 @@ class Login extends Component {
       localStorage.setItem("loggedInUserId", res.data.id);
       let username = localStorage.getItem("loggedInUserName");
       let userId = localStorage.getItem("loggedInUserId");
-      console.log("username =", username);
-      console.log("userId", userId);
-      this.props.history.push('/dashboard');
+      this.props.history.push("/dashboard");
     });
-    console.log("email:", this.state.email);
-    console.log("password:", this.state.password);
   }
 
   handleUsername(e) {
@@ -72,7 +66,7 @@ class Login extends Component {
                 <div className="logo">
                   <img src={pinImg} />
                 </div>
-                <br/>
+                <br />
 
                 <TextField
                   type="text"
